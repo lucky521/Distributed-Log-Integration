@@ -11,7 +11,9 @@ def decompress_zip(inputfile, outpath):
     for name in z.namelist():
         z.extract(name, outpath)
     fh.close()
-    
+
+
+
 if __name__ == '__main__':
     print "test for decompress_zip."
     match_period(test_inputfile, test_outpath)
