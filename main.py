@@ -6,11 +6,11 @@ from pattern import match_period
 from html_generator import output_html
 #############################################
 # User input
-uploadId = 1
-outputId = 1 
 # one uploadId can map to multiple time period's outputId
 start_time = "2016-03-01 10:23:49"
 end_time   = "2016-03-01 11:23:49"
+uploadId = 1
+outputId = 1 
 #############################################
 # folder location configuration
 uploadFolder = "./upload/id-" + str(uploadId)
