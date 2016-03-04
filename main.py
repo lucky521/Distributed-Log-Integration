@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 #############################################
+import os, shutil
+from decompress import decompress_zip
+from pattern import match_period
+from html_generator import output_html
+#############################################
 # User input
 uploadId = 1
 outputId = 1 
@@ -11,11 +16,8 @@ end_time   = "2016-03-01 11:23:49"
 uploadFolder = "./upload/id-" + str(uploadId)
 inputFolder = "./input/id-" + str(uploadId)
 outputFolder = "./output/id-" + str(outputId)
+result_html = output_html(outputId, "Result-id-" + str(outputId), start_time, end_time)
 ############################################
-import os, shutil
-from decompress import decompress_zip
-from pattern import match_period
-
 
 def traverse_to_extract(path_from, path_to):   
     for lists in os.listdir(path_from):   
@@ -47,20 +49,25 @@ def traverse_to_match(path_from, path_to):
         else:
             if match_period(path_from_new, start_time, end_time):
                 print "Matching for: " + path_from_new
-                print path_to
+                #print path_to
                 if not os.path.exists(path_to):
                     os.makedirs(path_to)
-                    
+                
+                # copy target file to output
                 shutil.copy(path_from_new, path_to_new)
+                # generate html file. not good here.
+                result_html.add_link("../.." + path_to_new[1:]) 
     
 
 def collect_all_match(inputFolder, outputFolder):
     traverse_to_match(inputFolder, outputFolder)
     print "collect_all_match Done."
     
-    
+
+
     
 if __name__ == '__main__':
-    extract_all_zipfile(uploadFolder, inputFolder)
+    #extract_all_zipfile(uploadFolder, inputFolder)
     collect_all_match(inputFolder, outputFolder)
+    result_html.generate_html("./output/id-" + str(outputId) + "/")
     print "Done."
