@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+# this module is to match log time tag pattern
 # regular expression match
 # time zone
 # 24 hour clock
