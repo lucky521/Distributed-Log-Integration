@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+# this module help to generate a html page to 
+# display result files via html access
 import os
 
 class output_html:
